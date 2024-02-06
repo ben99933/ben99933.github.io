@@ -1,16 +1,16 @@
-import './assets/css/style.css'
-import "./assets/css/tailwind.css"
+import './assets/css/style.css';
+import "./assets/css/tailwind.css";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
 library.add(fab);
 library.add(fas);
