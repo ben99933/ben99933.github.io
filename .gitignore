@@ -125,3 +125,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.vscode/
+.vscode
+.idea
+.idea/
+
+vcard-personal-portfolio/
