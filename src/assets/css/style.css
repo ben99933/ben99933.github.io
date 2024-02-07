@@ -23,12 +23,17 @@
 
 :root {
 
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none;  /* Chrome , Safari*/
+    -ms-user-select: none;  /* IE10 */
+    -khtml-user-select: none;  /* 古早瀏覽器 */
+    user-select: none; 
     /**
      * colors
      */
   
     /* gradient */
-  
+
     --bg-gradient-onyx: linear-gradient(
       to bottom right, 
       hsl(240, 1%, 25%) 3%, 
@@ -120,6 +125,7 @@
   img{
     pointer-events: none;
   }
+
   
   
   
