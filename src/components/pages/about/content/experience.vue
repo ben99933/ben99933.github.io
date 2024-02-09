@@ -32,6 +32,14 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
                                             "2021-2025",
                                             "Computer Science and Information Engineering"
                                         ));
+
+const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file-lines")
+                                        .addItem(new TimeLineItem(
+                                            "CCU Competitive Programming club (CCUPCDS)",
+                                            "2022-2025",
+                                            "Member of Instruction Team"
+                                        ));
+
 const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                         .addItem(new TimeLineItem(
                                             "2023 ICPC Asia Taiwan Online Programming Contest",
@@ -54,5 +62,6 @@ const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                         ));
 
 timeLines.push(timeLineEducation);
+timeLines.push(timeLineExperience);
 timeLines.push(timeLineContest);
 </script>
