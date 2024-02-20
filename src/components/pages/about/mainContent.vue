@@ -37,7 +37,7 @@
   <!-- awards -->
   <!-- <awards v-if="getActive('Awards')" :class="getActive('Awards')? 'active' : ''"/> -->
   <!-- skills -->
-  <!-- <skills v-if="getActive('Skills')" :class="getActive('Skills')? 'active' : ''"/> -->
+  <skills v-if="getActive('Skills')" :class="getActive('Skills')? 'active' : ''"/>
 
   <!--- #RESUME-->
   <!-- <resume class="" ref="" :class="getActive('Resume')"/> -->
@@ -60,7 +60,7 @@ import about from "./content/about.vue";
 // import awards from "./content/awards.vue";
 import experience from "./content/experience.vue";
 // import projects from "./content/projects.vue"
-// import skills from "./content/skills.vue"
+import skills from "./content/skills.vue"
 
 // import resume from "./content/resume.vue";
 import portfolio from "./content/portfolio.vue";
@@ -106,7 +106,7 @@ contentRegister.registerContent("About");
 contentRegister.registerContent("Experience");
 contentRegister.registerContent("Portfolio");
 // contentRegister.registerContent("Awards");
-// contentRegister.registerContent("Skills");
+contentRegister.registerContent("Skills");
 
               // .registerContent("Resume")
               // .registerContent("Portfolio")

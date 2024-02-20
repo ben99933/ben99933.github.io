@@ -5,16 +5,16 @@
     </header>
     <section class="timeline" v-for="timeline in timeLines" :key="timeline.title">
         <div class="title-wrapper">
-        <div class="icon-box">
-            <font-awesome-icon :icon="timeline.icon" size="xl" style="color: #FFD43B;" />
-        </div>
+            <div class="icon-box">
+                <font-awesome-icon :icon="timeline.icon" size="xl" style="color: #FFD43B;" />
+            </div>
             <h3 class="h3">{{timeline.title}}</h3>
         </div>
         <ol class="timeline-list">
             <li class="timeline-item" v-for="item in timeline.items" :key="item.title">
-                <h4 class="h4 timeline-item-title">{{item.title}}</h4>
+                <h3 class="h2 timeline-item-title !text-lg">{{item.title}}</h3>
                 <span>{{item.time}}</span>
-                <p class="timeline-text">{{item.description}}</p>
+                <p class="timeline-text whitespace-pre">{{item.description}}</p>
             </li>
         </ol>
     </section>
@@ -30,7 +30,8 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
                                         .addItem(new TimeLineItem(
                                             "National Chung Cheng University",
                                             "2021-2025",
-                                            "Computer Science and Information Engineering"
+                                            "Computer Science and Information Engineering \
+                                            GPA 4.23 / 4.3"
                                         ));
 
 const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file-lines")
