@@ -50,9 +50,14 @@ const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                             "Honorable Mention Award"
                                         ))
                                         .addItem(new TimeLineItem(
-                                            "Collegiate Programming Examination 2023 April",
-                                            "Rank 7.8%",
+                                            "Collegiate Programming Examination 2024 April",
+                                            "Problem Sovled 6/7",
+                                            "Rank 3%"
                                         ))
+                                        // .addItem(new TimeLineItem(
+                                        //     "Collegiate Programming Examination 2023 April",
+                                        //     "Rank 7.8%",
+                                        // ))
                                         .addItem(new TimeLineItem(
                                             "International ICT Innovative Services Awards 2023",
                                             "Finalist"

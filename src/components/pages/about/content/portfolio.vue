@@ -36,12 +36,12 @@
         <ul class="project-list">
             <li class="project-item  active" data-filter-item data-category="web development" v-for="item in getRenderProjectItems" :key="item.value.name" >
                 <a :href="item.value.link" target="_blank">
-                    <figure class="project-img">
+                    <figure class="project-img max-h-40 min-h-40 object-cover ">
                         <div class="project-item-icon-box">
                             <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="xl" style="color: #74C0FC;" />
                         </div>
-                        <div class=" max-h-40 min-h-40">
-                            <img :src="item.value.iconURL" alt="" loading="lazy">
+                        <div class="">
+                            <img :src="item.value.iconURL" alt="" loading="lazy" class="">
                         </div>
                         
                     </figure>
@@ -55,7 +55,9 @@
                         v-for="technique in item.value.techniques" :key="technique">
                             {{technique}}
                         </span> -->
+                        
                     </div>
+                    
                 </a>
             </li>
         </ul>
@@ -69,13 +71,15 @@ import {ProjectCategory, ProjectItem} from "@/utils/ProjectItem";
 
 
 
-function getCategoriesStrings(categorires:Set<ProjectCategory>){
+function getCategoriesStrings(categories:Set<ProjectCategory>){
     let array:string[] = [];
-    categorires.forEach((category:ProjectCategory)=>{
+    categories.forEach((category:ProjectCategory)=>{
         array.push(category.name);
     });
     return array;
 }
+
+
 
 const categoryWebDevelopment = new ProjectCategory("Web development");
 const categoryMachineLearnging = new ProjectCategory("Machine Learning");

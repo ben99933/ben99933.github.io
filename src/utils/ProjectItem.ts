@@ -1,10 +1,17 @@
 
 export class ProjectCategory{
     private _name:string;
+    public static categories:ProjectCategory[] =[];
     constructor(name:string){
         this._name = name;
     }
     public get name(){return this._name;}
+    static getCategoryFromString(name:string){
+        for(let i = 0;i<this.categories.length;i++){
+            if(this.categories[i].name==name)return this.categories[i];
+        }
+        return null;
+    }
 }
 export class ProjectItem{
     private _name:string;
@@ -12,6 +19,7 @@ export class ProjectItem{
     private _iconSrc:string = this.defaultIcon;
     private _link:string = "#";
     private _techniques: string[] = [];
+    private _descriptions:string[] = [];
     public display:boolean = true;
     constructor(name:string){
         this._name = name;
@@ -46,4 +54,6 @@ export class ProjectItem{
     public get iconURL(){
         return new URL(`../assets/images/projects/${this.iconSrc}`, import.meta.url).href;
     }
+    public get descriptions(){return this._descriptions;}
+
 }
