@@ -37,7 +37,7 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
 const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file-lines")
                                         .addItem(new TimeLineItem(
                                             "CCU Competitive Programming club (CCUPCDS)",
-                                            "2022-2025",
+                                            "2022-2024",
                                             "Member of Instruction Team"
                                         ));
 
