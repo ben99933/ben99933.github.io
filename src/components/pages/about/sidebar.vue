@@ -18,13 +18,19 @@
         <div class="separator"></div>
         <ul class="contacts-list">
             <li class="contact-item" v-for="item in contactItems" :key="item.title">
-                <div class="icon-box">
-                    <font-awesome-icon :icon="item.icon" style="color:#74C0FC" size="xl"/>
-                </div>
-                <div class="contact-info">
+                <a :href="item.link" class="icon-box">
+                    <font-awesome-icon :icon="item.icon" :style="item.style" size="xl"/>
+                </a>
+                <!-- <div class="icon-box">
+                    
+                    <font-awesome-icon :icon="item.icon" :style="item.style" size="xl"/>
+                </div> -->
+                <a :href="item.link" class="contact-info">
                     <p class="contact-title">{{item.title}}</p>
-                    <a :href="item.link" class="contact-link">{{item.value}}</a>
-                </div>
+                    <!-- <a :href="item.link" class="contact-link">{{item.value}}</a> -->
+                    <p class="contact-link">{{item.value}}</p>
+                </a>
+                
             </li>
         </ul>
     </div>
@@ -38,20 +44,30 @@ class ContactItem{
     private _value:string;
     private _link:string;
     private _icon :string[] | undefined;
-    constructor(title:string, value:string, link:string , icon?:string[]){
+    private _color :string | undefined;
+    constructor(title:string, value:string, link:string , icon?:string[], color?:string){
         this._title = title;
         this._value = value;
         this._link = link;
         this._icon = icon;
+        this._color = color;
     }
     public get title(){return this._title;}
     public get value(){return this._value;}
     public get link(){return this._link;}
     public get icon(){return this._icon;}
+    public get color(){
+        return this._color;
+    }
+    public get style(){
+        return {
+            color : this._color || "#74C0FC"
+        };
+    }
 }
 
 const contactItems:ContactItem[]=[
-    new ContactItem("Github", "ben99933", "https://github.com/ben99933", ['fab', 'square-github']),
+    new ContactItem("Github", "ben99933", "https://github.com/ben99933", ['fab', 'square-github'], "#7066ee"),
     new ContactItem("LinkedIn", "Chi-Lung Yang","https://www.linkedin.com/in/chi-lung-yang-662858220/",['fab', 'linkedin']),
 ];
 
