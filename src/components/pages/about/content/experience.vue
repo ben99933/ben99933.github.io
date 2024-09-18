@@ -43,6 +43,10 @@ const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file
 
 const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                         .addItem(new TimeLineItem(
+                                            "2024 ICPC Asia Taiwan Online Programming Contest",
+                                            "Sliver Medal"
+                                        ))
+                                        .addItem(new TimeLineItem(
                                             "2023 ICPC Asia Taiwan Online Programming Contest",
                                             "Bronze Medal"
                                         )).addItem(new TimeLineItem(
