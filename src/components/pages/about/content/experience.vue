@@ -32,14 +32,18 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
                                             "2021-2025",
                                             "Computer Science and Information Engineering \
                                             GPA 4.23 / 4.3"
-                                        ));
+                                        )).sort();
 
 const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file-lines")
                                         .addItem(new TimeLineItem(
                                             "CCU Competitive Programming club (CCUPCDS)",
-                                            "2022-2024",
+                                            "2022-2025",
                                             "Member of Instruction Team"
-                                        ));
+                                        )).addItem(new TimeLineItem(
+                                            "Network and System Security Lab",
+                                            "2024-2025",
+                                            "Part-time Assistant"
+                                        )).sort();
 
 const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                         .addItem(new TimeLineItem(

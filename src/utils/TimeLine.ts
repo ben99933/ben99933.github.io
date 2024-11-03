@@ -14,6 +14,15 @@ export class TimeLine{
         this.items.push(item);
         return this;
     }
+    public sort():TimeLine{
+        
+        this.items.sort((a,b) =>{
+            if(a.time == b.time)return 0;
+            if((a.time || "") < (b.time || "")) return 1;
+            else return -1;
+        })
+        return this;
+    }
 }
 export class TimeLineItem{
     private _title:string;
