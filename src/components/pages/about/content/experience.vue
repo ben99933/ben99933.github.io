@@ -32,6 +32,11 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
                                             "2021-2025",
                                             "Computer Science and Information Engineering \
                                             GPA 4.23 / 4.3"
+                                        ))
+                                        .addItem(new TimeLineItem(
+                                            "National Yang Ming Chiao Tung University",
+                                            "2025-",
+                                            "Department of Computer Science"
                                         )).sort();
 
 const timeLineExperience:TimeLine = new TimeLine("Experience", "fa-solid fa-file-lines")
@@ -49,6 +54,9 @@ const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                         .addItem(new TimeLineItem(
                                             "2024 ICPC Asia Taiwan Online Programming Contest",
                                             "Sliver Medal"
+                                        )).addItem(new TimeLineItem(
+                                            "2024 National Collegiate Programming Contest",
+                                            "Honorable Mention Award"
                                         ))
                                         .addItem(new TimeLineItem(
                                             "2023 ICPC Asia Taiwan Online Programming Contest",
