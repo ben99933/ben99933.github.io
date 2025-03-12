@@ -210,7 +210,7 @@ const serviceItems:AboutServiceItem[] = [
     new AboutServiceItem("Software Development").setIcon("fa-solid fa-laptop-code"),
     new AboutServiceItem("Web Development").setIcon("fa-solid fa-code"),
     new AboutServiceItem("Game Development / Modding").setIcon("fa-brands fa-unity"),
-    // new AboutServiceItem("")
+    new AboutServiceItem("Competitive programming").setIcon("fa-solid fa-medal"),
 ];
 
 

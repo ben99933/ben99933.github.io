@@ -3,29 +3,19 @@
 
   <!--- #NAVBAR-->
   <nav class="navbar">
+    <commonNavbar/>
+ 
     <ul class="navbar-list">
       <li class="navbar-item " v-for="item in navbarItems" :key="item">
         <button class="navbar-link hover:text-blue-500" data-nav-link @click="setActive(item)">
           {{item}}
         </button>
       </li>
-      <!-- <li class="navbar-item">
-        <button class="navbar-link" data-nav-link>Resume</button>
-      </li>
-      <li class="navbar-item">
-        <button class="navbar-link" data-nav-link>Portfolio</button>
-      </li>
-      <li class="navbar-item">
-        <button class="navbar-link" data-nav-link>Blog</button>
-      </li>
-      <li class="navbar-item">
-        <button class="navbar-link" data-nav-link>Contact</button>
-      </li> -->
     </ul>
   </nav>
 
   <!--- #ABOUT-->
-  <about v-if="getActive('About')" :class="getActive('About') ? 'active' : ''"/>
+  <about v-if="getActive('About Me')" :class="getActive('About Me') ? 'active' : ''"/>
   <!-- experience -->
   <experience v-if="getActive('Experience')" :class="getActive('Experience')? 'active' : ''"/>
   <!-- projects -->
@@ -44,7 +34,7 @@
 
   
 
-  <!--- #BLOG-->
+  <!--- #BLOG -->
   <!-- <blog class="" ref="" :class="getActive('Blog')"/> -->
 
   <!--- #CONTACT-->
@@ -55,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import commonNavbar from '@/components/commonNavbar.vue';
 
 import about from "./content/about.vue";
 // import awards from "./content/awards.vue";
@@ -64,7 +55,7 @@ import skills from "./content/skills.vue"
 
 // import resume from "./content/resume.vue";
 import portfolio from "./content/portfolio.vue";
-// import blog from "./content/blog.vue";
+import blog from "./content/blog.vue";
 // import contact from "./content/contact.vue"
 import { computed, ref, type Ref } from "vue";
 
@@ -102,11 +93,12 @@ function setActive(name:string){
 }
 
 const contentRegister = new ContentRegister();
-contentRegister.registerContent("About");
+contentRegister.registerContent("About Me");
 contentRegister.registerContent("Experience");
 contentRegister.registerContent("Portfolio");
 // contentRegister.registerContent("Awards");
 contentRegister.registerContent("Skills");
+// contentRegister.registerContent("Blog");
 
               // .registerContent("Resume")
               // .registerContent("Portfolio")

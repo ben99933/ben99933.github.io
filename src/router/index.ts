@@ -4,9 +4,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // redirect / to /blog
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      redirect: "/about"
+    },
+    {
+      path: '/blog',
+      name: 'Blog',
+      component: () => import('../views/BlogListView.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
       component: () => import('../views/AboutView.vue')
     },
     // {

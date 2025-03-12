@@ -68,6 +68,7 @@
 <script setup lang="ts">
 import {type Ref, ref, computed, nextTick} from "vue";
 import {ProjectCategory, ProjectItem} from "@/utils/ProjectItem";
+import { delay } from "@/utils/Time";
 
 
 
@@ -91,6 +92,7 @@ const projectSapientiaCreatrix = new ProjectItem("Sapientia Creatrix").setLink("
 const projectUDPAttacker = new ProjectItem("UDPAttacker").setLink("https://github.com/ben99933/Java-UDP-Flood-Attacker").addCategory(categoryTools);
 const projectCarbonMapApp = new ProjectItem("Tawian Carbon Map").setLink("https://github.com/carbon-map").setIcon("carbon-map.png").addCategory(categoryAPP).addCategory(categoryWebDevelopment).addCategory(categoryMachineLearnging);
 const projectBookkeeper = new ProjectItem("Bookkeeper").setLink("https://github.com/ben99933/java_bookkeeper").addCategory(categoryTools);
+const projectMyBlog = new ProjectItem("My Blog").setLink("https://ben99933.github.io/").addCategory(categoryWebDevelopment);
 
 const projectCategories: ProjectCategory[] =[
     categoryWebDevelopment,
@@ -101,9 +103,11 @@ const projectCategories: ProjectCategory[] =[
 const projectItems = [
     ref(projectCCUClass),
     ref(projectSapientiaCreatrix),
+    ref(projectMyBlog),
     ref(projectUDPAttacker),
     ref(projectCarbonMapApp),
     ref(projectBookkeeper),
+    
 ];
 
 const currentCategory = ref("All");
@@ -121,13 +125,23 @@ async function chooseCategory(categorySelected:string){
             item.value.display = false;
         });
         await nextTick();
-        projectItems.forEach((item)=>{
-            item.value.categories.forEach((category)=>{
+        for(var projItem of projectItems){
+            
+            for(var category of projItem.value.categories){
                 if(category.name==categorySelected){
-                    item.value.display = true;
+                    projItem.value.display = true;
+                    await delay(100);
                 }
-            })
-        });
+            }
+            
+        }
+        // projectItems.forEach((item)=>{
+        //     item.value.categories.forEach((category)=>{
+        //         if(category.name==categorySelected){
+        //             item.value.display = true;
+        //         }
+        //     })
+        // });
         
     }
 }

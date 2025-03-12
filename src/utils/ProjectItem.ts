@@ -2,6 +2,7 @@
 export class ProjectCategory{
     private _name:string;
     public static categories:ProjectCategory[] =[];
+    public projectItems:ProjectItem[] = [];
     constructor(name:string){
         this._name = name;
     }
@@ -12,6 +13,7 @@ export class ProjectCategory{
         }
         return null;
     }
+    
 }
 export class ProjectItem{
     private _name:string;
@@ -35,6 +37,7 @@ export class ProjectItem{
     }
     public addCategory(category:ProjectCategory){
         this._categories.add(category);
+        category.projectItems.push(this);
         return this;
     }
     public addTechnique(technique:string){

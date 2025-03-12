@@ -1,0 +1,1 @@
+concurrently "npm run dev" "npm run hotfix"
