@@ -1,0 +1,50 @@
+[
+    {
+      "name": "CCU Class",
+      "link": "https://github.com/CCU-Class",
+      "icon": "ccuclass.png",
+      "categories": ["Web development"]
+    },
+    {
+      "name": "Sapientia Creatrix",
+      "link": "https://github.com/Sapientia-Creatrix",
+      "icon": "Sapientia-Creatrix.png",
+      "categories": ["Web development", "Machine Learning"]
+    },
+    {
+      "name": "FB Video Downloader",
+      "link": "https://ben99933.github.io/facebook-video-downloader/",
+      "icon": "FB video downloader.png",
+      "categories": ["Web development", "Tools"]
+    },
+    {
+      "name": "UDPAttacker",
+      "link": "https://github.com/ben99933/Java-UDP-Flood-Attacker",
+      "icon": "",
+      "categories": ["Tools","Network", "Security","Java"]
+    },
+    {
+      "name": "Tawian Carbon Map",
+      "link": "https://github.com/carbon-map",
+      "icon": "carbon-map.png",
+      "categories": ["App", "Web development", "Machine Learning"]
+    },
+    {
+      "name": "Bookkeeper",
+      "link": "https://github.com/ben99933/java_bookkeeper",
+      "icon": "",
+      "categories": ["Tools"]
+    },
+    {
+      "name": "My Blog",
+      "link": "https://ben99933.github.io/",
+      "icon": "",
+      "categories": ["Web development"]
+    },
+    {
+      "name": "Water Quality Detection Model",
+      "link": "https://github.com/CCUDL/DL2024_Team5_Image_RPI_Prediction",
+      "icon": "",
+      "categories": ["Machine Learning"]
+    }
+  ]

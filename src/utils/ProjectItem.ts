@@ -52,7 +52,7 @@ export class ProjectItem{
     public get link(){return this._link;}
     public get techniques(){return this._techniques;}
     public get defaultIcon(){
-        return "default.png";
+        return "default orange.svg";
     }
     public get iconURL(){
         return new URL(`../assets/images/projects/${this.iconSrc}`, import.meta.url).href;
