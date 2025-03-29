@@ -36,7 +36,7 @@
         <ul class="project-list">
             <li class="project-item  active" data-filter-item data-category="web development" v-for="item in getRenderProjectItems" :key="item.value.name" >
                 <a :href="item.value.link" target="_blank">
-                    <figure class="project-img max-h-40 min-h-40 object-cover ">
+                    <figure class="project-img max-h-40 min-h-40 ">
                         <div class="project-item-icon-box">
                             <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="xl" style="color: #74C0FC;" />
                         </div>
@@ -89,10 +89,12 @@ const categoryAPP = new ProjectCategory("App");
 
 const projectCCUClass = new ProjectItem("CCU Class").setLink("https://github.com/CCU-Class").setIcon("ccuclass.png").addCategory(categoryWebDevelopment);
 const projectSapientiaCreatrix = new ProjectItem("Sapientia Creatrix").setLink("https://github.com/Sapientia-Creatrix").setIcon("Sapientia-Creatrix.png").addCategory(categoryWebDevelopment).addCategory(categoryMachineLearnging);
+const projectFacebookVideoDownloader = new ProjectItem("FB Video Downloader").setLink("https://ben99933.github.io/facebook-video-downloader/").setIcon("FB video downloader.png").addCategory(categoryWebDevelopment).addCategory(categoryTools)
 const projectUDPAttacker = new ProjectItem("UDPAttacker").setLink("https://github.com/ben99933/Java-UDP-Flood-Attacker").addCategory(categoryTools);
 const projectCarbonMapApp = new ProjectItem("Tawian Carbon Map").setLink("https://github.com/carbon-map").setIcon("carbon-map.png").addCategory(categoryAPP).addCategory(categoryWebDevelopment).addCategory(categoryMachineLearnging);
 const projectBookkeeper = new ProjectItem("Bookkeeper").setLink("https://github.com/ben99933/java_bookkeeper").addCategory(categoryTools);
 const projectMyBlog = new ProjectItem("My Blog").setLink("https://ben99933.github.io/").addCategory(categoryWebDevelopment);
+
 
 const projectCategories: ProjectCategory[] =[
     categoryWebDevelopment,
@@ -107,8 +109,11 @@ const projectItems = [
     ref(projectUDPAttacker),
     ref(projectCarbonMapApp),
     ref(projectBookkeeper),
-    
+    ref(projectFacebookVideoDownloader),
 ];
+
+// shuffle the projectItems array
+projectItems.sort(() => Math.random() - 0.5);
 
 const currentCategory = ref("All");
 const getCurrentCategory = computed(()=>{
