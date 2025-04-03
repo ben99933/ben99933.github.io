@@ -57,7 +57,7 @@ const timeLines = computed(() => {
         title: post.title,
         time: post.postDate.toLocaleDateString(), // ex: 2025/3/30
         description: post.description || '',       // 可加上 description 支援
-        link: `/blog/view?id=${post.uuid}&month=${month}` // 給 router-link 用
+        link: `#/blog/view?id=${post.uuid}&month=${month}` // 給 router-link 用
       }))
     }));
 });
