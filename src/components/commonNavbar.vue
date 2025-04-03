@@ -19,8 +19,8 @@ class CommonNavbarItem {
     constructor(public name: string, public link: string) {}
 }
 const commonNavbarItems:CommonNavbarItem[]=[];
-commonNavbarItems.push(new CommonNavbarItem("Blog", "/blog/home"));
-commonNavbarItems.push(new CommonNavbarItem("About Me", "/about/AboutMe"));
+commonNavbarItems.push(new CommonNavbarItem("Blog", "#/blog/home"));
+commonNavbarItems.push(new CommonNavbarItem("About Me", "#/about/AboutMe"));
 
 
 

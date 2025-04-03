@@ -8,7 +8,7 @@
     <section class="blog-posts">
         <ul class="blog-posts-list mx-5" style="grid-template-columns: 1fr !important">
             <li class="blog-post-item" v-for="item in sortedPosts " >
-                <a :href=" '/blog/view?' + 'month=' + item.postDate.toISOString().slice(0,7)+ '&id=' + item.uuid">
+                <a :href=" '#/blog/view?' + 'month=' + item.postDate.toISOString().slice(0,7)+ '&id=' + item.uuid">
                     <figure class="blog-banner-box" v-if="item.img.length >0">
                         <img :src="item.imgUrl" alt="Design conferences in 2022" loading="lazy">
                     </figure>
