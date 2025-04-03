@@ -129,7 +129,7 @@ const getCurrentCategory = computed(()=>{
 
 // 只顯示前幾個個類別，點擊後顯示全部類別
 const showAllCategories = ref(false);
-const MAX_VISIBLE_CATEGORIES = 6; // 最大顯示的類別數量
+const MAX_VISIBLE_CATEGORIES = 4; // 最大顯示的類別數量
 const sortedCategories = computed(() => {
     const frequency = new Map<string, number>();
     projectItems.value.forEach((item) => {
@@ -146,9 +146,9 @@ const visibleCategories = computed(() => {
 });
 
 const projectItems = ref<Ref<ProjectItem>[]>([]);
+    
 onMounted(async () => {
-    const res = await fetch("projects.json");
-    // const res = await fetch("projects.json");
+    const res = await fetch("/projects.json");
     const jsonData = await res.json();
     // console.log(jsonData);
     

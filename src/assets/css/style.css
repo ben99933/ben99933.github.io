@@ -1123,6 +1123,7 @@
     color: var(--light-gray-70);
     font-size: var(--fs-6);
     font-weight: var(--fw-300);
+    
   }
   
   .blog-meta .dot {
@@ -1913,3 +1914,22 @@
     .timeline-text { max-width: 700px; }
   
   }
+
+
+.hljs,
+pre code {
+  white-space: pre-wrap !important;      /* 保留原格式 */
+  word-break: break-word !important;    /* 不要斷單字 */
+  word-wrap: normal !important;
+  overflow-x: auto;
+  display: block;
+  line-height: 1.5;
+  
+}
+.hljs span {
+  display: inline !important;
+  white-space: inherit !important;
+}
+
+
+

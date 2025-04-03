@@ -14,7 +14,7 @@
             <li class="timeline-item" v-for="item in timeline.items" :key="item.title">
                 <h3 class="h2 timeline-item-title !text-lg">{{item.title}}</h3>
                 <span>{{item.time}}</span>
-                <p class="timeline-text whitespace-pre">{{item.description}}</p>
+                <p class="timeline-text whitespace-pre-line">{{item.description}}</p>
             </li>
         </ol>
     </section>
@@ -30,8 +30,7 @@ const timeLineEducation:TimeLine = new TimeLine("Education", "fa-solid fa-school
                                         .addItem(new TimeLineItem(
                                             "National Chung Cheng University",
                                             "2021-2025",
-                                            "Computer Science and Information Engineering \
-                                            GPA 4.23 / 4.3"
+                                            "Computer Science and Information Engineering \nGPA 4.23 / 4.3"
                                         ))
                                         .addItem(new TimeLineItem(
                                             "National Yang Ming Chiao Tung University",
@@ -83,7 +82,8 @@ const timeLineContest:TimeLine = new TimeLine("Contest","fa-solid fa-award")
                                             "Finalist"
                                         ));
 
-timeLines.push(timeLineEducation);
+
 timeLines.push(timeLineExperience);
 timeLines.push(timeLineContest);
+timeLines.push(timeLineEducation);
 </script>

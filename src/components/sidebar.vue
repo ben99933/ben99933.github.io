@@ -2,21 +2,21 @@
 <aside class="sidebar active" data-sidebar>
     <div class="sidebar-info">
         <figure class="avatar-box">
-            <img src="/src/assets/images/my-avatar.png" alt="Richard hanrick" width="80">
+            <img src="/src/assets/images/my-avatar.png" alt="" width="80">
         </figure>
         <div class="info-content">
-            <h1 class="name" title="Richard hanrick">Chi-Lung Yang</h1>
+            <h1 class="name">Chi-Lung Yang</h1>
 
-            <!-- <p class="title">Web developer</p> -->
+            <p class="title">準菸酒生</p>
         </div>
-        <!-- <button class="info_more-btn" data-sidebar-btn>
+        <button class="info_more-btn" data-sidebar-btn>
             <span>Show Contacts</span>
             <ion-icon name="chevron-down"></ion-icon>
-        </button> -->
+        </button>
     </div>
     <div class="sidebar-info_more">
         <div class="separator"></div>
-        <ul class="contacts-list">
+        <ul class="gap-1 contacts-list ">
             <li class="contact-item" v-for="item in contactItems" :key="item.title">
                 <a :href="item.link" class="icon-box">
                     <font-awesome-icon :icon="item.icon" :style="item.style" size="xl"/>

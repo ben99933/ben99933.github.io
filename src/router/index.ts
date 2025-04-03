@@ -7,26 +7,18 @@ const router = createRouter({
     // redirect / to /blog
     {
       path: "/",
-      redirect: "/about"
+      redirect: "/blog/home"
     },
     {
-      path: '/blog',
+      path: '/blog/:page?',
       name: 'Blog',
       component: () => import('../views/BlogListView.vue')
     },
     {
-      path: '/about',
+      path: '/about/:page?',
       name: 'about',
       component: () => import('../views/AboutView.vue')
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
   ]
 })
 
