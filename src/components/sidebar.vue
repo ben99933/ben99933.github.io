@@ -68,7 +68,6 @@ class ContactItem{
 
 const contactItems:ContactItem[]=[
     new ContactItem("Github", "ben99933", "https://github.com/ben99933", ['fab', 'square-github'], "#7066ee"),
-    new ContactItem("LinkedIn", "Chi-Lung Yang","https://www.linkedin.com/in/chi-lung-yang-662858220/",['fab', 'linkedin']),
     new ContactItem("Email", "yangben999.official@gmail.com", "mailto:yangben999.official@gmail.com", ['fas', 'envelope'], "#FFD700"),
 ];
 
