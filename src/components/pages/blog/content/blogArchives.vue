@@ -1,31 +1,31 @@
 <template>
-<article class="blog active" data-page="blog">
+  <article class="blog active" data-page="blog">
     <header>
-        <h2 class="h2 article-title">Archives</h2>
+      <h2 class="h2 article-title">Archives</h2>
     </header>
 
     <section class="timeline" v-for="timeline in timeLines" :key="timeline.title">
-        <div class="title-wrapper">
-            <div class="icon-box">
-                <font-awesome-icon :icon="timeline.icon" size="xl" style="color: #FFD43B;" />
-            </div>
-            <h3 class="h3">{{timeline.title}}</h3>
+      <div class="title-wrapper">
+        <div class="icon-box">
+          <font-awesome-icon :icon="timeline.icon" size="xl" style="color: #FFD43B;" />
         </div>
-        <ol class="timeline-list">
-            <li class="timeline-item" v-for="item in timeline.items" :key="item.title">
-                <a :href="item.link" class="flex ">
-                  
-                  <span class=" mr-2">{{item.time}}</span>
-                  <h3 class="h2 timeline-item-title !text-lg hover:text-yellow-500">{{item.title}}</h3>
-                </a>
-                
-                
-                <!-- <p class="timeline-text whitespace-pre">{{item.description}}</p> -->
-            </li>
-        </ol>
+        <h3 class="h3">{{ timeline.title }}</h3>
+      </div>
+      <ol class="timeline-list">
+        <li class="timeline-item" v-for="item in timeline.items" :key="item.title">
+          <a :href="item.link" class="flex ">
+
+            <span class=" mr-2">{{ item.time }}</span>
+            <h3 class="h2 timeline-item-title !text-lg hover:text-yellow-500">{{ item.title }}</h3>
+          </a>
+
+
+          <!-- <p class="timeline-text whitespace-pre">{{item.description}}</p> -->
+        </li>
+      </ol>
     </section>
 
-</article>
+  </article>
 
 
 </template>
@@ -33,7 +33,7 @@
 <script setup lang="ts">
 
 import { BlogPostTag, BlogPostTagRegister, BlogPostItem, BlogPostItemRegister } from "@/utils/Blog/BlogPostItem";
-import { onMounted,computed } from "vue";
+import { onMounted, computed } from "vue";
 
 
 
