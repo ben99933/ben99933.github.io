@@ -29,7 +29,8 @@ const md = new MarkdownIt({
             const html = hljs.highlight(line, { language: lang, ignoreIllegals: true }).value
             return `<div class="code-line flex"><span class="line-number select-none pr-4 text-gray-500">${idx + 1}</span><span class="line-content">${html}</span></div>`
             })
-            return `<pre class="hljs rounded-lg p-4 my-4 overflow-x-auto bg-gray-900 text-sm"><code>${highlighted.join("\n")}</code></pre>`
+            return `<pre class="hljs rounded-lg p-4 overflow-x-auto bg-gray-900 text-sm" ><code style="user-select: text !important;">${highlighted.join("\n")}</code></pre>
+            `
         } catch (__) {}
         }
         return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`
@@ -47,6 +48,12 @@ const renderedHtml = computed(() => md.render(props.content))
     line-height: 1.6;
     background-color: transparent !important;
 }
+.markdown-body .katex span {
+  display: initial !important;
+  writing-mode: horizontal-tb !important;
+}
+
+
 .code-line {
     white-space: pre;
 }
@@ -55,4 +62,5 @@ const renderedHtml = computed(() => md.render(props.content))
     text-align: right;
     user-select: none;
 }
+
 </style>
