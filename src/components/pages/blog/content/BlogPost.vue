@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter} from 'vue-router'
-import {ref, onMounted, type Ref, watch, computed} from 'vue'
+import {ref, onMounted, type Ref, watch, computed, watchEffect,nextTick} from 'vue'
 import { BlogPostItem, BlogPostItemRegister, BlogPostFactory } from '@/utils/Blog/BlogPostItem'
 import MarkdownRenderer from './MarkdownRenderer.vue'
 
@@ -77,28 +77,43 @@ async function loadMarkdown(){
 }
 
 function goBack() {
-  if (window.history.length > 1) {
+  const referrer = document.referrer;
+  const sameOrigin = referrer && new URL(referrer).origin === window.location.origin;
+    
+  if (window.history.length > 1 && sameOrigin) {
     router.back(); // 如果有上一頁，返回
   } else {
     router.push('/blog/home'); // 沒有就導向 blog 列表頁
   }
 }
+async function updateSEO() {
+  if(metadata.value) {
+    await nextTick();
+    document.title = "";
+    await setTimeout(() => {
+      document.title = `${metadata.value.title} | ben99933.github.io`;
+      console.log(`title=${metadata.value.title}`);
+      console.log(`document.title=${document.title}`);
+      const description = metadata.value.description || metadata.value.title || "ben99933.github.io";
 
+      // description
+      let meta = document.querySelector("meta[name='description']")
+      if (!meta) {
+        meta = document.createElement("meta")
+        meta.name = "description"
+        document.head.appendChild(meta)
+      }
+      meta.content = description;
+    },0);
+    
+  }
+}
 
 onMounted(async () => {
+  console.log("mounted");
   await loadMetadata();
   await loadMarkdown();
-  if(metadata.value) document.title = `${metadata.value?.title}|ben99933.github.io` || "ben99933.github.io";
-  const description = metadata.value?.description || metadata.value?.title || "ben99933.github.io";
-  const meta = document.querySelector("meta[name='description']")
-  if (meta) {
-    meta.setAttribute("content", description)
-  } else {
-    const m = document.createElement("meta")
-    m.name = "description"
-    m.content = description
-    document.head.appendChild(m)
-  }
+  await updateSEO();
 });
 
 </script>

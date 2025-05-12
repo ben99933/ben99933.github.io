@@ -14,8 +14,8 @@
 
 
     <!--- #CONTENT-->
-    <component v-if="!isPostView" v-for="item in selectionManager.navbarItems.value" :key="item.name" :is="item.component" v-show="item.active" :class="item.active && !isPostView? 'active':''"/>
-    <blogPost v-if="isPostView" :v-show="isPostView" :class="isPostView ? 'active' : ''"/>
+    <blogPost v-if="isPostView" :key="route.fullPath"  :class="isPostView ? 'active' : ''"/>
+    <component v-else v-for="item in selectionManager.navbarItems.value" :key="item.name" :is="item.component" v-show="item.active" :class="item.active && !isPostView? 'active':''"/>
     
 </div>
 </template>
