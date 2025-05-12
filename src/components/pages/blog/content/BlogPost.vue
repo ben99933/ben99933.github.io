@@ -87,13 +87,11 @@ function goBack() {
   }
 }
 async function updateSEO() {
-  if(metadata.value) {
+  if(metadata.value as BlogPostItem){ {
     await nextTick();
     document.title = "";
     await setTimeout(() => {
       document.title = `${metadata.value.title} | ben99933.github.io`;
-      console.log(`title=${metadata.value.title}`);
-      console.log(`document.title=${document.title}`);
       const description = metadata.value.description || metadata.value.title || "ben99933.github.io";
 
       // description
