@@ -33,7 +33,7 @@
 <script setup lang="ts">
 
 import { BlogPostTag, BlogPostTagRegister, BlogPostItem, BlogPostItemRegister } from "@/utils/Blog/BlogPostItem";
-import { onMounted, computed } from "vue";
+import { onMounted, computed, nextTick } from "vue";
 
 
 
@@ -60,5 +60,13 @@ const timeLines = computed(() => {
         link: `#/blog/view?id=${post.uuid}&month=${month}` // 給 router-link 用
       }))
     }));
+});
+
+
+onMounted(async () => {
+  await nextTick();
+  document.title = "";
+  await nextTick();
+  document.title = "Archive | ben99933.github.io";
 });
 </script>

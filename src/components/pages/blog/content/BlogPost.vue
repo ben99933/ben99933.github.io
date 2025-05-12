@@ -86,32 +86,33 @@ function goBack() {
     router.push('/blog/home'); // 沒有就導向 blog 列表頁
   }
 }
-async function updateSEO() {
-  if(metadata.value as BlogPostItem){ {
+async function updateSEO(metadata:BlogPostItem) {
+  if(metadata){
     await nextTick();
     document.title = "";
-    await setTimeout(() => {
-      document.title = `${metadata.value.title} | ben99933.github.io`;
-      const description = metadata.value.description || metadata.value.title || "ben99933.github.io";
+    await nextTick();
+    
+    document.title = `${metadata.title} | ben99933.github.io`;
+    const description = metadata.description || metadata.title || "ben99933.github.io";
 
-      // description
-      let meta = document.querySelector("meta[name='description']")
-      if (!meta) {
-        meta = document.createElement("meta")
-        meta.name = "description"
-        document.head.appendChild(meta)
-      }
-      meta.content = description;
-    },0);
+    description
+    let meta = document.querySelector("meta[name='description']") as HTMLMetaElement | null;
+    if (!meta) {
+      meta = document.createElement("meta")
+      meta.name = "description"
+      document.head.appendChild(meta)
+    }
+    meta.content = description;
+    
     
   }
 }
 
 onMounted(async () => {
-  console.log("mounted");
+  // console.log("mounted");
   await loadMetadata();
   await loadMarkdown();
-  await updateSEO();
+  await updateSEO(metadata.value as BlogPostItem);
 });
 
 </script>

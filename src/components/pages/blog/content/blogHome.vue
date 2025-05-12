@@ -80,12 +80,22 @@
 
 <script setup lang="ts">
 import { BlogPostTag, BlogPostTagRegister, BlogPostItem, BlogPostItemRegister } from "@/utils/Blog/BlogPostItem";
-import { onMounted, computed } from "vue";
+import { onMounted, computed,nextTick } from "vue";
 import dayjs from "dayjs";
 
 const sortedPosts = computed(() => {
     return Array.from(BlogPostItemRegister.getInstance().items.value.values())
         .sort((a, b) => b.postDate.getTime() - a.postDate.getTime());
 });
+
+onMounted(async() => {
+    await nextTick();
+    document.title = "";
+    await nextTick();
+    document.title = "Blog | ben99933.github.io";
+    
+});
+
+
 
 </script>

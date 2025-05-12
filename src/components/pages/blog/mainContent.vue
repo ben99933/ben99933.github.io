@@ -15,7 +15,12 @@
 
     <!--- #CONTENT-->
     <blogPost v-if="isPostView" :key="route.fullPath"  :class="isPostView ? 'active' : ''"/>
-    <component v-else v-for="item in selectionManager.navbarItems.value" :key="item.name" :is="item.component" v-show="item.active" :class="item.active && !isPostView? 'active':''"/>
+    <div v-if="!isPostView">
+        <div v-for="item in selectionManager.navbarItems.value" :key="item.name" >
+            <component v-bind:is="item.component" v-if="item.active" :class="item.active && !isPostView ? 'active' : ''"/>
+        </div>
+    </div>
+    
     
 </div>
 </template>
