@@ -34,7 +34,7 @@ const timeLineEducation: TimeLine = new TimeLine("Education", "fa-solid fa-schoo
     ))
     .addItem(new TimeLineItem(
         "National Yang Ming Chiao Tung University",
-        "2025-",
+        "2025-Present",
         "Department of Computer Science"
     )).sort();
 
@@ -47,6 +47,10 @@ const timeLineExperience: TimeLine = new TimeLine("Experience", "fa-solid fa-fil
         "Network and System Security Lab",
         "2024-2025",
         "Part-time Assistant"
+    )).addItem(new TimeLineItem(
+        "Networking and Sensing Systems Laboratory",
+        "2025-Present",
+        "Research Assistant"
     )).sort();
 
 const timeLineContest: TimeLine = new TimeLine("Contest", "fa-solid fa-award")
