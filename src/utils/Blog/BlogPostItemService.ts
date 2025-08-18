@@ -1,4 +1,4 @@
-import { BlogPostTagRegister, BlogPostItem, BlogPostItemRegister } from "@/utils/Blog/BlogPostItem";
+import { BlogPostTagRegister, BlogPostItem, BlogPostItemRegister,BlogPostFactory } from "@/utils/Blog/BlogPostItem";
 import { ref } from "vue";
 export const isBlogReady = ref(false);
 
@@ -30,5 +30,41 @@ export async function loadAllBlogPostMetadata(indexPath:string = '/blogDB/index.
         }
     }
     isBlogReady.value = true;
+}
+
+export async function loadMetadata(queryId:string, queryMonth:string){
+    let result:BlogPostItem | null = null;
+    try{
+
+        // console.log(`quertId=${queryId}, queryMonth=${queryMonth}`);
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        const monthRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
+        if (typeof queryId === "string" && uuidRegex.test(queryId) && typeof queryMonth === "string" && monthRegex.test(queryMonth)){
+        const metaRes = await fetch(`/blogDB/metadata/${queryMonth}/${queryId}.json`);
+        // console.losg(`metaRes=${metaRes}`);
+        const meta = await metaRes.json();
+        
+        result = BlogPostFactory.createFromMetadata(meta);
+        
+        }else{
+        console.warn("worng id or month");
+        }
+    }catch(e){
+        console.warn(e)
+    }
+    return result;
+  
+}
+
+export async function loadMarkdown(month:string, postId:string){
+    let result:string = "";
+    try{
+        const res = await fetch(`/blogDB/post/${month}/${postId}.md`)
+        const text = await res.text();
+        result = text
+    }catch(e){
+        console.error(e);
+    }
+    return result;
 }
 

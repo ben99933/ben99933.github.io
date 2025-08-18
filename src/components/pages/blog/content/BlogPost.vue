@@ -18,7 +18,7 @@
       
     </button>
     <div class="separator-line"></div>
-    <h2 class="h2 article-title">{{ metadata?.title || 'Article Not Found' }}</h2>
+    <h2 class="h2 article-title">{{ postItem?.title || 'Article Not Found' }}</h2>
   </header>
   <section class="blog-posts">
     <MarkdownRenderer :content="markdownContent" />
@@ -35,46 +35,14 @@ import { useRoute, useRouter} from 'vue-router'
 import {ref, onMounted, type Ref, watch, computed, watchEffect,nextTick} from 'vue'
 import { BlogPostItem, BlogPostItemRegister, BlogPostFactory } from '@/utils/Blog/BlogPostItem'
 import MarkdownRenderer from './MarkdownRenderer.vue'
+import { loadMarkdown, loadMetadata } from '@/utils/Blog/BlogPostItemService'
 
 const route = useRoute()
 const router = useRouter();
 const postId: Ref<string> = ref('')
 const month: Ref<string> = ref('')
-const metadata: Ref<BlogPostItem | null> = ref(null);
+const postItem: Ref<BlogPostItem | null> = ref(null);
 const markdownContent = ref("");
-
-async function loadMetadata(){
-  try{
-    const queryId= route.query.id as string;
-    const queryMonth = route.query.month as string;
-    // console.log(`quertId=${queryId}, queryMonth=${queryMonth}`);
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-    const monthRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
-    postId.value = queryId;
-    month.value = queryMonth;
-    if (typeof queryId === "string" && uuidRegex.test(queryId) && typeof queryMonth === "string" && monthRegex.test(queryMonth)){
-      const metaRes = await fetch(`/blogDB/metadata/${month.value}/${postId.value}.json`);
-      // console.losg(`metaRes=${metaRes}`);
-      const meta = await metaRes.json();
-      
-      metadata.value = BlogPostFactory.createFromMetadata(meta);
-    }else{
-      console.warn("worng id or month");
-    }
-  }catch(e){
-    console.warn(e)
-  }
-  
-}
-async function loadMarkdown(){
-  try{
-    const res = await fetch(`/blogDB/post/${month.value}/${postId.value}.md`)
-    const text = await res.text();
-    markdownContent.value = text;
-  }catch(e){
-    console.error(e);
-  }
-}
 
 function goBack() {
   const referrer = document.referrer;
@@ -110,9 +78,13 @@ async function updateSEO(metadata:BlogPostItem) {
 
 onMounted(async () => {
   // console.log("mounted");
-  await loadMetadata();
-  await loadMarkdown();
-  await updateSEO(metadata.value as BlogPostItem);
+  postId.value = route.query.id as string;
+  month.value = route.query.month as string;
+
+  postItem.value = await loadMetadata(postId.value,month.value);
+  let text = await loadMarkdown(month.value,postId.value);
+  markdownContent.value = text;
+  await updateSEO(postItem.value as BlogPostItem);
 });
 
 </script>

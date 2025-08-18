@@ -31,7 +31,9 @@ const md = new MarkdownIt({
             })
             return `<pre class="hljs rounded-lg p-4 overflow-x-auto bg-gray-900 text-sm" ><code style="user-select: text !important;">${highlighted.join("\n")}</code></pre>
             `
-        } catch (__) {}
+        } catch (__) {
+            console.error("Error highlighting code:", __);
+        }
         }
         return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`
     }
