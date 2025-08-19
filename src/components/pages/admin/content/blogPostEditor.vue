@@ -204,9 +204,9 @@ async function saveModify(){
     console.log(`metadata:`, metadata.value);
     const postdata = {
           metadata: {
-            UUID: metadata.value.uuid,
+            UUID: metadata.value!.uuid,
             title: form.value.metadata.title,
-            date: metadata.value.postDate.toISOString("").slice(0, 10),
+            date: metadata.value!.postDate.toISOString().slice(0, 10),
             tags: Array.from(form.value.metadata.tags.split(",")).map(tag => tag.trim()),
             description: form.value.metadata.description,
             img: form.value.metadata.img

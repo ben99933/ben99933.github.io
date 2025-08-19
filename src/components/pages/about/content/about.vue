@@ -185,7 +185,6 @@
 </template>
 
 <script setup lang="ts">
-import Vue from 'vue'
 class AboutServiceItem{
     private _title:string;
     private _icon?:string="fa-solid fa-circle-question";
