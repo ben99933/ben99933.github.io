@@ -87,6 +87,9 @@ export class BlogPostItemRegister{
         this.items.value.set(item.uuid, item);
         return item;
     }
+    public removeItem(uuid: string): boolean {
+        return this.items.value.delete(uuid);
+    }
 }
 
 

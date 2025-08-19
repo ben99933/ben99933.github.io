@@ -3,7 +3,6 @@
     "title": "【筆記】Java 動態陣列底層實作",
     "date": "2025-05-12",
     "tags": ["筆記", "Java", "資料結構"],
-    "content": "template",
     "description": "這裡主要探討ArrayList，雖然Java也有Vector這個class，他跟ArrayList的差別是Vector是thread safe的，vector會比較慢，因此如果不是特殊用途，一般都是使用ArrayList。",
     "img": ""
 }

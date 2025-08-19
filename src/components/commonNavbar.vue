@@ -21,7 +21,7 @@ class CommonNavbarItem {
 const commonNavbarItems:CommonNavbarItem[]=[];
 commonNavbarItems.push(new CommonNavbarItem("Blog", "#/blog/home"));
 commonNavbarItems.push(new CommonNavbarItem("About Me", "#/about/AboutMe"));
-if(import.meta.env.DEV)commonNavbarItems.push(new CommonNavbarItem("Admin", "#/admin"));
+if(import.meta.env.DEV)commonNavbarItems.push(new CommonNavbarItem("Admin", "#/admin/home"));
 
 
 

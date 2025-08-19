@@ -19,7 +19,7 @@
                                 <time>{{ item.postDate.toLocaleDateString() }}</time>
                                 <div class="blog-category">
                                     <ul class="flex">
-                                        <li v-for="tag in item.tags" class="flex items-center gap-1 m-1">
+                                        <li v-for="tag in item.tags" class="flex items-center gap-1 m-1" :key="tag.name">
                                             <span class="dot"></span>
                                             <span class="">{{ tag.name }}</span>
 

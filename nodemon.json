@@ -1,0 +1,6 @@
+{
+  "watch": ["tools/blogAdmin"],
+  "ext": "ts,json",
+  "ignore": ["node_modules"],
+  "exec": "tsx --tsconfig tools/blogAdmin/tsconfig.json tools/blogAdmin/server.ts"
+}

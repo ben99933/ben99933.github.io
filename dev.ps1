@@ -1,1 +1,1 @@
-concurrently "npm run dev" "npm run hotfix"
+concurrently "npm run dev" "npm run hotfix" "npm run dev:api"
