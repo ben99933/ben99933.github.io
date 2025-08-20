@@ -17,9 +17,9 @@
             </div>
 
             <ul class="blog-posts-list mx-5" style="grid-template-columns: 1fr !important">
-                
-                <li class="blog-post-item relative group flex" v-for="item in sortedPosts" v-bind:key="item.uuid">
-                    <div class="flex">
+
+                <li class="blog-post-item rounded-xl shadow-(--shadow-4) border-l-2 border-t-2 relative group flex border-gray-600" v-for="item in sortedPosts" v-bind:key="item.uuid">
+                    <div class="">
                         <a :href="'#/admin/view?' + 'month=' + item.postDate.toISOString().slice(0, 7) + '&id=' + item.uuid">
                             <figure class="blog-banner-box" v-if="item.img.length > 0">
                                 <img :src="item.imgUrl" alt="Design conferences in 2022" loading="lazy">
@@ -59,7 +59,6 @@
                             <font-awesome-icon :icon="['fas', 'trash']" style="color: #ff0000;" :size="'lg'"/>
                         </button>
                     </div>
-
                 </li>
 
 
