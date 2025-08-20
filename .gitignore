@@ -133,3 +133,7 @@ dist
 
 vcard-personal-portfolio/
 src/assets/css/tailwind.css
+
+# python
+.venv/
+__pycache__/
