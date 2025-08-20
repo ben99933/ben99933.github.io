@@ -1,0 +1,1 @@
+uv run .\tools\blogSync\SyncBlogDB.py
