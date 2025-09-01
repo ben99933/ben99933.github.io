@@ -137,4 +137,3 @@ src/assets/css/tailwind.css
 # python
 .venv/
 __pycache__/
-src/assets/css/tailwind.css
