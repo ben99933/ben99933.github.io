@@ -13,7 +13,7 @@
     "type-check": "vue-tsc --build --force",
     "hotfix": "npx tailwindcss -i ./src/assets/css/style.css -o ./src/assets/css/tailwind.css --minify --watch",
     "dev:api": "nodemon",
-    "build:api": "tsc -p tools/blogAdmin/tsconfig.json && tsc-alias -p tools/blogAdmin/tsconfig.json"
+    "build:api": "npx tailwindcss -i ./src/assets/css/style.css -o ./src/assets/css/tailwind.css --minify && tsc -p tools/blogAdmin/tsconfig.json && tsc-alias -p tools/blogAdmin/tsconfig.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
