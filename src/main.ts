@@ -12,7 +12,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import App from './App.vue';
 import router from './router';
-import hljsVuePlugin from "@/utils/Blog/MakrdownHightLight";
+import hljsVuePlugin from "@/utils/Blog/MarkdownHighlight";
 
 library.add(fab);
 library.add(fas);

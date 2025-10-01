@@ -9,7 +9,6 @@ import xml from 'highlight.js/lib/languages/xml';
 import json from 'highlight.js/lib/languages/json';
 import yaml from 'highlight.js/lib/languages/yaml';
 
-
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("java", java);
 hljs.registerLanguage("sql", sql);

@@ -31,18 +31,17 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, computed } from "vue";
+import { useBlogList } from "@/composables/useBlogList";
+import type { BlogPost } from "@/types/blog.types";
 
-import { BlogPostTag, BlogPostTagRegister, BlogPostItem, BlogPostItemRegister } from "@/utils/Blog/BlogPostItem";
-import { onMounted, computed, nextTick } from "vue";
-
-
+const { sortedPosts } = useBlogList();
 
 const timeLines = computed(() => {
-  const map = new Map<string, BlogPostItem[]>(); // key: '2025-04'
-  const allPosts = Array.from(BlogPostItemRegister.getInstance().items.value.values());
-
-  for (const post of allPosts) {
-    const key = post.postDate.toISOString().slice(0, 7); // '2025-04'
+  const map = new Map<string, BlogPost[]>(); // key: '2025-04'
+  
+  for (const post of sortedPosts.value) {
+    const key = post.date.toISOString().slice(0, 7); // '2025-04'
     if (!map.has(key)) map.set(key, []);
     map.get(key)!.push(post);
   }
@@ -55,18 +54,14 @@ const timeLines = computed(() => {
       icon: ['fas', 'folder'], // 或你想要的 icon
       items: items.map(post => ({
         title: post.title,
-        time: post.postDate.toLocaleDateString(), // ex: 2025/3/30
+        time: post.date.toLocaleDateString(), // ex: 2025/3/30
         description: post.description || '',       // 可加上 description 支援
-        link: `#/blog/view?id=${post.uuid}&month=${month}` // 給 router-link 用
+        link: `#/blog/view?id=${post.id}&month=${month}` // 給 router-link 用
       }))
     }));
 });
 
-
 onMounted(async () => {
-  await nextTick();
-  document.title = "";
-  await nextTick();
   document.title = "Archive | ben99933.github.io";
 });
 </script>

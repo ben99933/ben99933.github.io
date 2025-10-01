@@ -27,8 +27,8 @@
     <div>
       <ul class="flex items-center justify-between mb-2">
         <li style="user-select: text;" class="">
-          <div class="flex items-center gap-1">Upload Time: {{ (metadata?.postDate.toLocaleDateString()) }}</div>
-          <div class="flex items-center gap-1">UUID = {{ metadata?.uuid }}</div>
+          <div class="flex items-center gap-1">Upload Time: {{ (metadata?.date.toLocaleDateString()) }}</div>
+          <div class="flex items-center gap-1">UUID = {{ metadata?.id }}</div>
         </li>
         <li class="flex gap-4">
           <button class="px-4 py-2 rounded transition-colors duration-500" :disabled="!isDirty"
@@ -122,10 +122,12 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter} from 'vue-router'
-import {ref, onMounted, type Ref, watch, computed, watchEffect,nextTick} from 'vue'
-import { BlogPostItem,BlogPostFactory} from '@/utils/Blog/BlogPostItem'
+import {ref, onMounted, type Ref, computed, nextTick} from 'vue'
 import MarkdownRenderer from '../../blog/content/MarkdownRenderer.vue'
-import { loadMarkdown, loadMetadata} from '@/utils/Blog/BlogPostItemService'
+import { useBlogStore } from '@/stores/blog'
+import { useSEO } from '@/composables/useSEO'
+import type { BlogPost } from '@/types/blog.types'
+import { createBlogPost } from '@/utils/Blog/BlogUtils'
 import {v4 as uuidv4} from 'uuid'
 
 
@@ -174,7 +176,7 @@ const router = useRouter();
 const postId: Ref<string> = ref('')
 const month: Ref<string> = ref('')
 
-const metadata: Ref<BlogPostItem | null> = ref(null);
+const metadata: Ref<BlogPost | null> = ref(null);
 const markdownContent = ref("");
 const markdownContentOriginal = ref("");
 
@@ -204,9 +206,9 @@ async function saveModify(){
     console.log(`metadata:`, metadata.value);
     const postdata = {
           metadata: {
-            UUID: metadata.value!.uuid,
+            UUID: metadata.value!.id,
             title: form.value.metadata.title,
-            date: metadata.value!.postDate.toISOString().slice(0, 10),
+            date: metadata.value!.date.toISOString().slice(0, 10),
             tags: Array.from(form.value.metadata.tags.split(",")).map(tag => tag.trim()),
             description: form.value.metadata.description,
             img: form.value.metadata.img
@@ -232,7 +234,7 @@ async function saveModify(){
 
 }
 
-async function updateSEO(metadata:BlogPostItem) {
+async function updateSEO(metadata:BlogPost) {
   if(metadata){
     await nextTick();
     document.title = "";
@@ -257,48 +259,63 @@ async function loadpost() {
   postId.value = route.query.id as string;
   month.value = route.query.month as string;
   
-  metadata.value = await loadMetadata(postId.value,month.value);
-  const postFounded = metadata.value !== null;
-  if (!postFounded) {
-    const uuid:string = uuidv4() as string;
-    const date:Date = new Date();
-    const meta={
+  const blogStore = useBlogStore();
+  const repository = blogStore.getRepository();
+  
+  try {
+    metadata.value = await repository.getPost(postId.value, month.value);
+    const text = await repository.getPostContent(postId.value, month.value);
+    
+    markdownContent.value = text;
+    markdownContentOriginal.value = text;
+    form.value = {
+      metadata: {
+        title: metadata.value?.title ?? "",
+        tags: Array.from(metadata.value?.tags ?? []).join(", "),
+        description: metadata.value?.description ?? "",
+        img: metadata.value?.imageFileName ?? "",
+      },
+      content: text,
+    }
+    formOrigin.value = JSON.parse(JSON.stringify(form.value));
+  } catch (error) {
+    // 創建新文章
+    const uuid: string = uuidv4() as string;
+    const date: Date = new Date();
+    const meta = {
       UUID: uuid,
       title: "",
-      date: date.toLocaleDateString(),
+      date: date.toISOString(),
       tags: [],
       description: "",
       img: ""
     };
-    metadata.value = BlogPostFactory.createFromMetadata(meta);
+    metadata.value = createBlogPost(meta);
     postId.value = uuid;
     month.value = date.toISOString().slice(0, 7);
-    // console.log(metadata.value)
-  }
-  let text = postFounded ? await loadMarkdown(month.value,postId.value) : "";
-
-  markdownContent.value = text;
-  markdownContentOriginal.value = text;
-  form.value = {
-    metadata: {
-      title: metadata.value?.title ?? "",
-      tags: Array.from(metadata.value?.tags ?? []).map((tag)=>tag.name).join(", "),
-      description: metadata.value?.description ?? "",
-      img: metadata.value?.img ?? "",
-    },
-    content: text,
-  }
-  formOrigin.value = JSON.parse(JSON.stringify(form.value));
-  if(!postFounded){
+    
+    markdownContent.value = "";
+    markdownContentOriginal.value = "";
+    form.value = {
+      metadata: {
+        title: "",
+        tags: "",
+        description: "",
+        img: "",
+      },
+      content: "",
+    }
+    formOrigin.value = JSON.parse(JSON.stringify(form.value));
+    
     // 更改網址
-    router.replace({query:{ month: month.value, id: " " } });
+    router.replace({query:{ month: month.value, id: postId.value } });
   }
 }
 
 onMounted(async () => {
   // console.log("mounted");
   await loadpost();
-  await updateSEO(metadata.value as BlogPostItem);
+  await updateSEO(metadata.value as BlogPost);
 });
 
 </script>
