@@ -1,5 +1,5 @@
-import type { IDataSource } from '@/interfaces/blog.interfaces'
-import { DataSourceError } from '@/errors/blog.errors'
+import type { IDataSource } from '@/types/blog/blog.interfaces'
+import { DataSourceError } from '@/types/blog/blog.errors'
 
 /**
  * 基於 fetch API 的資料來源實作

@@ -1,4 +1,4 @@
-import type { BlogPost, BlogPostMetadata } from '@/types/blog.types'
+import type { BlogPost, BlogPostMetadata } from '@/types/blog/blog.types'
 
 /**
  * 部落格相關的工具函數

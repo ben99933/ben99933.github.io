@@ -1,4 +1,4 @@
-import type { BlogPost, BlogPostWithContent } from '@/types/blog.types'
+import type { BlogPost, BlogPostWithContent } from '@/types/blog/blog.types'
 
 /**
  * 資料來源抽象層 - 負責從各種來源載入資料

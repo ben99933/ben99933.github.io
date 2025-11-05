@@ -1,6 +1,6 @@
 import { ref, computed, readonly } from 'vue'
 import { useBlogStore } from '@/stores/blog'
-import type { BlogPost, BlogPostWithContent } from '@/types/blog.types'
+import type { BlogPost, BlogPostWithContent } from '@/types/blog/blog.types'
 
 /**
  * 處理單篇部落格文章的 Composable

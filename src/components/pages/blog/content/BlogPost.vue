@@ -26,9 +26,9 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, onMounted, watch, ref } from 'vue'
 import MarkdownRenderer from './MarkdownRenderer.vue'
-import { useBlogPost } from '@/composables/useBlogPost'
-import { useSEO } from '@/composables/useSEO'
-import type { BlogPostWithContent } from '@/types/blog.types'
+import { useBlogPost } from '@/composables/blog/useBlogPost'
+import { useSEO } from '@/composables/common/useSEO'
+import type { BlogPostWithContent } from '@/types/blog/blog.types'
 
 const route = useRoute()
 const router = useRouter()

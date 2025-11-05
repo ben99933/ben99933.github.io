@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import type { BlogPost } from '@/types/blog.types'
+import type { BlogPost } from '@/types/blog/blog.types'
 
 /**
  * 處理 SEO 相關功能的 Composable

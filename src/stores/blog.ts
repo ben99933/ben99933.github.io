@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed, readonly } from 'vue'
-import type { BlogPost } from '@/types/blog.types'
-import { FetchDataSource } from '@/services/DataSource'
-import { UrlService } from '@/services/UrlService'
-import { BlogRepository } from '@/services/BlogRepository'
+import type { BlogPost } from '@/types/blog/blog.types'
+import { FetchDataSource } from '@/services/core/DataSource'
+import { UrlService } from '@/services/core/UrlService'
+import { BlogRepository } from '@/services/blog/BlogRepository'
 
 /**
  * 部落格相關的全域狀態管理

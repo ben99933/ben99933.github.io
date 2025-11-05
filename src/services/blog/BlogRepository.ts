@@ -2,17 +2,17 @@ import type {
   IBlogRepository, 
   IDataSource, 
   IUrlService 
-} from '@/interfaces/blog.interfaces'
+} from '@/types/blog/blog.interfaces'
 import type { 
   BlogPost, 
   BlogPostMetadata, 
   BlogPostWithContent 
-} from '@/types/blog.types'
+} from '@/types/blog/blog.types'
 import { 
   BlogError, 
   ValidationError, 
   PostNotFoundError 
-} from '@/errors/blog.errors'
+} from '@/types/blog/blog.errors'
 
 /**
  * 部落格儲存庫實作

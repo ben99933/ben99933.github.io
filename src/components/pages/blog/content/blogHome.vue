@@ -94,7 +94,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useBlogList } from "@/composables/useBlogList";
+import { useBlogList } from "@/composables/blog/useBlogList";
 
 import { useBlogStore } from "@/stores/blog";
 

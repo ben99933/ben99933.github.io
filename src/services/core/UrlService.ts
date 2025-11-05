@@ -1,4 +1,4 @@
-import type { IUrlService } from '@/interfaces/blog.interfaces'
+import type { IUrlService } from '@/types/blog/blog.interfaces'
 
 /**
  * URL 服務實作 - 處理部落格相關的 URL 生成

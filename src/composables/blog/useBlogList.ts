@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { useBlogStore } from '@/stores/blog'
-import type { BlogPost } from '@/types/blog.types'
+import type { BlogPost } from '@/types/blog/blog.types'
 
 /**
  * 處理部落格列表和搜尋的 Composable

@@ -99,8 +99,8 @@
 
 <script setup lang="ts">
 import { onMounted, computed, nextTick } from "vue";
-import { useBlogList } from '@/composables/useBlogList'
-import type { BlogPost } from '@/types/blog.types'
+import { useBlogList } from '@/composables/blog/useBlogList'
+import type { BlogPost } from '@/types/blog/blog.types'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const { posts, loadAllPosts } = useBlogList()

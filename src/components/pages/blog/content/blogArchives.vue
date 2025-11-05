@@ -32,8 +32,8 @@
 
 <script setup lang="ts">
 import { onMounted, computed } from "vue";
-import { useBlogList } from "@/composables/useBlogList";
-import type { BlogPost } from "@/types/blog.types";
+import { useBlogList } from "@/composables/blog/useBlogList";
+import type { BlogPost } from "@/types/blog/blog.types";
 
 const { sortedPosts } = useBlogList();
 
