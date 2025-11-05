@@ -29,12 +29,12 @@
 import commonNavbar from '@/components/commonNavbar.vue';
 import AdminHome from "@/components/pages/admin/content/AdminHome.vue";
 import postEditor from "@/components/pages/admin/content/blogPostEditor.vue"
-import blogArchives from '../blog/content/blogArchives.vue';
+
 // import blogTagsList from './content/blogTagsList.vue';
 import { SelectionManager } from '@/utils/navbar/SelectionManager';
-import { onMounted, watch, computed} from 'vue';
+import { onMounted, computed} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { BlogPostItem, BlogPostItemRegister } from '@/utils/Blog/BlogPostItem';
+
 
 const router = useRouter();
 const route = useRoute();

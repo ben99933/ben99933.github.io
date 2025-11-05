@@ -32,9 +32,9 @@ import blogPost from "@/components/pages/blog/content/BlogPost.vue"
 import blogArchives from './content/blogArchives.vue';
 // import blogTagsList from './content/blogTagsList.vue';
 import { SelectionManager } from '@/utils/navbar/SelectionManager';
-import { onMounted, watch, computed} from 'vue';
+import { onMounted, computed} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { BlogPostItem, BlogPostItemRegister } from '@/utils/Blog/BlogPostItem';
+
 
 const router = useRouter();
 const route = useRoute();
