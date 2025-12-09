@@ -7,7 +7,7 @@
         <div class="info-content">
             <h1 class="name">Chi-Lung Yang</h1>
 
-            <p class="title">準菸酒生</p>
+            <p class="title">菸酒生</p>
         </div>
         <button class="info_more-btn" data-sidebar-btn>
             <span>Show Contacts</span>
