@@ -13,6 +13,7 @@ import {
   ValidationError, 
   PostNotFoundError 
 } from '@/types/blog/blog.errors'
+import { safeDecrypt } from '@/utils/crypto/AESCrypto'
 
 /**
  * 部落格儲存庫實作
@@ -64,22 +65,25 @@ export class BlogRepository implements IBlogRepository {
     }
   }
 
-  async getPostContent(id: string, month: string): Promise<string> {
+  async getPostContent(id: string, month: string, aesKey?: string): Promise<string> {
     if (!this.validatePostParams(id, month)) {
       throw new ValidationError('Invalid post ID or month format')
     }
 
     try {
       const contentUrl = this.urlService.getPostContentUrl(month, id)
-      return await this.dataSource.getText(contentUrl)
+      const rawContent = await this.dataSource.getText(contentUrl)
+      
+      // 如果有 AES key，嘗試解密
+      return await safeDecrypt(rawContent, aesKey)
     } catch (error) {
       throw new BlogError(`Failed to load content for post ${id}`, error as Error)
     }
   }
 
-  async getPostContentSafe(id: string, month: string): Promise<string | null> {
+  async getPostContentSafe(id: string, month: string, aesKey?: string): Promise<string | null> {
     try {
-      return await this.getPostContent(id, month)
+      return await this.getPostContent(id, month, aesKey)
     } catch (error) {
       console.warn(`Content not found for post: ${id} in ${month}`, error)
       return null
@@ -87,10 +91,8 @@ export class BlogRepository implements IBlogRepository {
   }
 
   async getPostWithContent(id: string, month: string): Promise<BlogPostWithContent> {
-    const [post, content] = await Promise.all([
-      this.getPost(id, month),
-      this.getPostContent(id, month)
-    ])
+    const post = await this.getPost(id, month)
+    const content = await this.getPostContent(id, month, post.aesKey)
 
     return {
       ...post,
@@ -127,7 +129,8 @@ export class BlogRepository implements IBlogRepository {
       date: new Date(metadata.date),
       description: metadata.description,
       imageFileName: metadata.img,
-      tags: metadata.tags || []
+      tags: metadata.tags || [],
+      aesKey: metadata.aesKey
     }
   }
 }

@@ -1,4 +1,4 @@
-import {BlogPostMetadata} from '@/utils/Blog/BlogPostItem';
+import type {BlogPostMetadata} from '@/types/blog/blog.types';
 
 export interface ModelBlogPostData{
   metadata: BlogPostMetadata;

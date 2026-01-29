@@ -9,11 +9,12 @@ import {
   mdPathFor,
   imgDirFor,
   relMetaPath,
+  savePostContent,
 } from "../services/BlogService";
 
 import { ensureDir, writeJson } from "../lib/FsHelper";
 import { ModelBlogPostData } from "../Models/ModelBlogPost";
-import { BlogPostMetadata } from '@/utils/Blog/BlogPostItem';
+import type { BlogPostMetadata } from '@/types/blog/blog.types';
 import path from "path";
 import { title } from "process";
 
@@ -59,11 +60,9 @@ router.post("/", async (req, res) => {
 
     const uuid = metadata.UUID;
     const metaAbs = metaPathFor(metadata.date, uuid);
-    const mdAbs = mdPathFor(metadata.date, uuid);
     const imgDir = imgDirFor(metadata.date, uuid);
 
     await ensureDir(path.dirname(metaAbs));
-    await ensureDir(path.dirname(mdAbs));
     await ensureDir(imgDir);
 
     const meta: BlogPostMetadata = {
@@ -73,10 +72,13 @@ router.post("/", async (req, res) => {
       tags: metadata.tags || [],
       description: metadata.description || "",
       img: metadata.img || "",
+      aesKey: metadata.aesKey || "",  // 新增 aesKey 欄位
     };
 
     await writeJson(metaAbs, meta);
-    await fs.writeFile(mdAbs, content, "utf-8");
+    
+    // 使用 savePostContent 處理加密/不加密儲存
+    await savePostContent(metadata.date, uuid, content, meta.aesKey);
 
     const metaRel = relMetaPath(meta.date, uuid);
     const list = (await loadIndexList()).filter(async p => {

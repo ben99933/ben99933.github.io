@@ -10,6 +10,7 @@ export interface BlogPost {
   readonly description?: string
   readonly imageFileName?: string
   readonly tags: readonly string[]
+  readonly aesKey?: string  // AES 加密金鑰，空字串或 undefined 表示不加密
 }
 
 // 部落格標籤介面
@@ -25,6 +26,7 @@ export interface BlogPostMetadata {
   readonly description?: string
   readonly img?: string
   readonly tags?: string[]
+  readonly aesKey?: string  // AES 加密金鑰，空字串或 undefined 表示不加密
 }
 
 // 載入狀態

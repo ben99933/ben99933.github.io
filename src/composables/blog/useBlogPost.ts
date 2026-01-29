@@ -48,7 +48,8 @@ export function useBlogPost(id: string, month: string) {
 
     try {
       const repository = blogStore.getRepository()
-      const contentResult = await repository.getPostContentSafe(id, month)
+      // 傳遞 aesKey 進行解密
+      const contentResult = await repository.getPostContentSafe(id, month, post.value.aesKey)
       
       if (contentResult !== null) {
         content.value = contentResult
