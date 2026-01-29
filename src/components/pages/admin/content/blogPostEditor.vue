@@ -256,29 +256,13 @@ async function updateSEO(metadata:BlogPost) {
   }
 }
 async function loadpost() {
-  postId.value = route.query.id as string;
+  const queryId = route.query.id as string;
   month.value = route.query.month as string;
   
-  const blogStore = useBlogStore();
-  const repository = blogStore.getRepository();
+  // 如果 id 為 'new' 或 '+'，直接創建新文章
+  const isNewPost = queryId === 'new' || queryId === '+';
   
-  try {
-    metadata.value = await repository.getPost(postId.value, month.value);
-    const text = await repository.getPostContent(postId.value, month.value);
-    
-    markdownContent.value = text;
-    markdownContentOriginal.value = text;
-    form.value = {
-      metadata: {
-        title: metadata.value?.title ?? "",
-        tags: Array.from(metadata.value?.tags ?? []).join(", "),
-        description: metadata.value?.description ?? "",
-        img: metadata.value?.imageFileName ?? "",
-      },
-      content: text,
-    }
-    formOrigin.value = JSON.parse(JSON.stringify(form.value));
-  } catch (error) {
+  if (isNewPost) {
     // 創建新文章
     const uuid: string = uuidv4() as string;
     const date: Date = new Date();
@@ -306,9 +290,34 @@ async function loadpost() {
       content: "",
     }
     formOrigin.value = JSON.parse(JSON.stringify(form.value));
+    return;
+  }
+  
+  // 載入既有文章
+  postId.value = queryId;
+  const blogStore = useBlogStore();
+  const repository = blogStore.getRepository();
+  
+  try {
+    metadata.value = await repository.getPost(postId.value, month.value);
+    const text = await repository.getPostContent(postId.value, month.value);
     
-    // 更改網址
-    router.replace({query:{ month: month.value, id: postId.value } });
+    markdownContent.value = text;
+    markdownContentOriginal.value = text;
+    form.value = {
+      metadata: {
+        title: metadata.value?.title ?? "",
+        tags: Array.from(metadata.value?.tags ?? []).join(", "),
+        description: metadata.value?.description ?? "",
+        img: metadata.value?.imageFileName ?? "",
+      },
+      content: text,
+    }
+    formOrigin.value = JSON.parse(JSON.stringify(form.value));
+  } catch (error) {
+    console.error("Error loading post:", error);
+    // 文章不存在，導向回首頁
+    router.replace('/admin/home');
   }
 }
 

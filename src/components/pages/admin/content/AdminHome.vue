@@ -9,7 +9,7 @@
 
             <div class="flex justify-end mb-4">
                 <a
-                    :href="'#/admin/view?month=' + new Date().toISOString().slice(0, 7) + '&id=+'"
+                    :href="'#/admin/view?month=' + new Date().toISOString().slice(0, 7) + '&id=new'"
                     class="flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-500 transition-colors duration-300">
                     <font-awesome-icon :icon="['fas', 'plus']" />
                     Add Blog Post
