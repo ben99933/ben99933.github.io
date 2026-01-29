@@ -28,14 +28,14 @@ export interface IBlogRepository {
   getPostSafe(id: string, month: string): Promise<BlogPost | null>
   
   /**
-   * 載入文章的 Markdown 內容
+   * 載入文章的 Markdown 內容 (會根據 aesKey 自動解密)
    */
-  getPostContent(id: string, month: string): Promise<string>
+  getPostContent(id: string, month: string, aesKey?: string): Promise<string>
   
   /**
    * 安全地載入文章內容，找不到時返回 null 而不拋出錯誤
    */
-  getPostContentSafe(id: string, month: string): Promise<string | null>
+  getPostContentSafe(id: string, month: string, aesKey?: string): Promise<string | null>
   
   /**
    * 載入文章及其內容

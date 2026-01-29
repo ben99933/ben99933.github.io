@@ -14,7 +14,8 @@ export function createBlogPost(metadata: BlogPostMetadata): BlogPost {
     date: new Date(metadata.date),
     description: metadata.description,
     imageFileName: metadata.img,
-    tags: metadata.tags || []
+    tags: metadata.tags || [],
+    aesKey: metadata.aesKey
   }
 }
 

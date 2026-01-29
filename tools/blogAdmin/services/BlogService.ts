@@ -1,7 +1,8 @@
 import path from "path";
 import fs from "fs/promises";
-import {BlogPostMetadata} from '@/utils/Blog/BlogPostItem';
+import type {BlogPostMetadata} from '@/types/blog/blog.types';
 import { readJsonSafe, writeJson, ensureDir } from "../lib/FsHelper";
+import { safeDecrypt, safeEncrypt } from "../lib/AESCrypto";
 
 export const PROJECT_ROOT = path.resolve(__dirname, "../../../");
 export const BLOGDB_ROOT = path.join(PROJECT_ROOT, "public", "blogDB");
@@ -39,13 +40,27 @@ export const readPostData = async (metaRelPath: string): Promise<{ meta: BlogPos
     const mdAbs = mdPathFor(meta.date, meta.UUID);
     let content = "";
     try { 
-        content = await fs.readFile(mdAbs, "utf-8"); 
+        const rawContent = await fs.readFile(mdAbs, "utf-8");
+        // 根據 aesKey 解密內容
+        content = safeDecrypt(rawContent, meta.aesKey);
     } 
-    catch {
-        console.error(`Failed to read post content from ${mdAbs}`);
+    catch (err) {
+        console.error(`Failed to read post content from ${mdAbs}:`, err);
         content = ""; // Default to empty content if reading fails
     }
     return { meta, content };
+};
+
+/**
+ * 儲存文章內容 (根據 aesKey 決定是否加密)
+ */
+export const savePostContent = async (dateStr: string, uuid: string, content: string, aesKey?: string): Promise<void> => {
+    const mdAbs = mdPathFor(dateStr, uuid);
+    await ensureDir(path.dirname(mdAbs));
+    
+    // 根據 aesKey 決定是否加密
+    const contentToSave = safeEncrypt(content, aesKey);
+    await fs.writeFile(mdAbs, contentToSave, "utf-8");
 };
 
 export const initBlogDirs = async () => {
