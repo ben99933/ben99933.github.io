@@ -24,7 +24,7 @@
                 <li class="blog-post-item" v-for="item in sortedPosts" v-bind:key="item.id">
                     <a :href="'#/blog/view?' + 'month=' + item.date.toISOString().slice(0, 7) + '&id=' + item.id">
                         <figure class="blog-banner-box" v-if="item.imageFileName && item.imageFileName.length > 0">
-                            <img :src="blogStore.getBlogImageUrl(item.imageFileName)" alt="Design conferences in 2022" loading="lazy">
+                            <img :src="blogStore.getBlogImageUrl(item.date.toISOString().slice(0, 7), item.id, item.imageFileName)" alt="thumbnail" loading="lazy">
                         </figure>
                         <div class="blog-content">
 
