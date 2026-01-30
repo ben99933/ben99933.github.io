@@ -115,8 +115,8 @@ export const useBlogStore = defineStore('blog', () => {
     return repository
   }
 
-  function getBlogImageUrl(filename?: string): string | undefined {
-    return filename ? urlService.getBlogImageUrl(filename) : undefined
+  function getBlogImageUrl(month?: string, uuid?: string, filename?: string): string | undefined {
+    return filename && month && uuid ? urlService.getBlogImageUrl(`${month}/${uuid}/${filename}`) : undefined
   }
 
   return {

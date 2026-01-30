@@ -1107,7 +1107,7 @@
     transition: var(--transition-1);
   }
   
-  .blog-post-item > a:hover .blog-banner-box img { transform: scale(1.1); }
+  /* .blog-post-item > a:hover .blog-banner-box img { transform: scale(1.1); } */
   
   .blog-content { padding: 15px; }
   
